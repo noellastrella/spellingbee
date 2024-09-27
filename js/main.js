@@ -1,11 +1,13 @@
 //Didn't want to pay NYT subscription and wanted to make this game on my own
+var words // dirty cheat
 (()=>{
   let vowels = "AEIOU".split("");
   let alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");    
   let consonants = alphabet.reduce((acc,curr)=>vowels.includes(curr) ? acc: [...acc, curr],[]);
-  var words, letters, lettersOpp, guessArray, guessesArray, score;
+  var letters, lettersOpp, guessArray, guessesArray, score;
   var minPossibleAllowed = 20;
   var minPossibleScore = 100;
+  //var words;
 
   var wordFile = './js/wordlist/wordsFiltered.json' +"?num="+Math.random();  //'/js/wordlist/words273k.json'
 
