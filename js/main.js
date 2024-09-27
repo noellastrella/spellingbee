@@ -88,7 +88,7 @@
   }
 
   function updateState(msg=" "){
-    document.querySelector("#word_list").innerHTML = guessesArray.reduce((acc,curr)=>acc+=`<li>${curr.guess} (${curr.score})</li>`,"")
+    document.querySelector("#word_list").innerHTML = guessesArray.reduce((acc,curr)=>acc+=`<li>${curr} (${getScore(curr)})</li>`,"")
     document.querySelector("#text").innerText = guessArray.join("");
     document.querySelector("#score").innerText = score;
     document.querySelector("#alert").innerHTML = msg;
