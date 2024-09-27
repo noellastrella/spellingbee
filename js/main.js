@@ -30,7 +30,6 @@
       let vowels = "AEIOU".split("");
       let alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");    
       let consonants = alphabet.reduce((acc,curr)=>vowels.includes(curr) ? acc: [...acc, curr],[]);
-      let stats;
 
       letters.push( [...vowels.map(value => ({ value, sort: Math.random() })).sort((a, b) => a.sort - b.sort).map(({ value }) => value).splice(0,1) ] );
       letters.push( [...consonants.map(value => ({ value, sort: Math.random() })).sort((a, b) => a.sort - b.sort).map(({ value }) => value).splice(0,6) ] );
@@ -92,7 +91,6 @@
 
   function findMatches(){
     return new Promise((resolve)=>{
-      let msg;
       let matches = words.reduce((acc,curr,i)=>{
         let pass = true;
         if(!curr.includes(letters[letters.length-1].toLowerCase())){
@@ -103,9 +101,8 @@
           })
         }
   
-        if(pass){
-          acc.push(curr);
-        }
+        if(pass) acc.push(curr);
+        
         return acc;
       },[]);
 
