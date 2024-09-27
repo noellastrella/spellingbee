@@ -11,6 +11,7 @@
   var guessesArray = [];
   var score = 0;
   var minPossibleAllowed = 20;
+  var minPossibleScore = 100;
 
   var wordFile = './js/wordlist/wordsFiltered.json' +"?num="+Math.random();  //'/js/wordlist/words273k.json'
 
@@ -68,8 +69,8 @@
       updateLetters();
 
       const msg = await findMatches();
-      if(msg.length < minPossibleAllowed) init(); //redo this cuz theres not enough possible words
-      document.querySelector("#possible_matches").innerHTML = msg.length;
+      if((msg.words.length < minPossibleAllowed) && msg.maxScore < minPossibleScore) init(); //redo this cuz theres not enough possible words
+      document.querySelector("#possible_matches").innerHTML = msg.words.length;
       console.log(msg)
   }
 
@@ -94,6 +95,7 @@
   }
 
   function findMatches(){
+    let maxScore = 0
     return new Promise((resolve)=>{
       let matches = words.reduce((acc,curr,i)=>{
         let pass = true;
@@ -105,12 +107,15 @@
           })
         }
   
-        if(pass) acc.push(curr);
+        if(pass) {
+          acc.push(curr)
+          maxScore += getScore(curr);
+        };
         
         return acc;
       },[]);
 
-      resolve(matches);
+      resolve({words:matches, maxScore: maxScore});
     })
   }
 
@@ -123,7 +128,7 @@
         if(guessesArray.includes(guessTemp)){
           return "Word already used";
         }else{
-          let scoreTemp = guessTemp.length-3;
+          let scoreTemp = getScore(guessTemp);
           guessesArray.push({
             guess: guessTemp,
             score: scoreTemp
@@ -135,5 +140,9 @@
     }else{
       return "Not a word";
     }
+  }
+
+  function getScore(temp){
+    return temp.length-3;
   }
 })();
