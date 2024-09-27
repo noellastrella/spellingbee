@@ -1,16 +1,18 @@
 //Didn't want to pay NYT subscription and wanted to make this game on my own
 
 (()=>{
+  let vowels = "AEIOU".split("");
+  let alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");    
+  let consonants = alphabet.reduce((acc,curr)=>vowels.includes(curr) ? acc: [...acc, curr],[]);
   var words;
   var letters = [];
   var lettersOpp = [];
   var guessArray = [];
   var guessesArray = [];
-  var wordFile = "";
   var score = 0;
   var minPossibleAllowed = 20;
 
-  wordFile = './js/wordlist/wordsFiltered.json' +"?num="+Math.random();  //'/js/wordlist/words273k.json'
+  var wordFile = './js/wordlist/wordsFiltered.json' +"?num="+Math.random();  //'/js/wordlist/words273k.json'
 
   fetch(wordFile)
     .then(response => {
@@ -29,10 +31,7 @@
     .catch(error => console.error('Fetch error:', error) );
 
   async function init(){
-      let vowels = "AEIOU".split("");
-      let alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");    
-      let consonants = alphabet.reduce((acc,curr)=>vowels.includes(curr) ? acc: [...acc, curr],[]);
-
+      letters = [];
       letters.push( [...vowels.map(value => ({ value, sort: Math.random() })).sort((a, b) => a.sort - b.sort).map(({ value }) => value).splice(0,1) ] );
       letters.push( [...consonants.map(value => ({ value, sort: Math.random() })).sort((a, b) => a.sort - b.sort).map(({ value }) => value).splice(0,6) ] );
       letters = letters.flat();
@@ -42,6 +41,7 @@
         return acc;
       },[]);
       
+      console.log(letters)
       document.querySelector("#custom_letters").addEventListener("submit", (e)=>{ 
         e.preventDefault();
         
@@ -63,7 +63,8 @@
             }
         }
         updateState(msg);
-      })
+      });
+
       updateLetters();
 
       const msg = await findMatches();
