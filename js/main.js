@@ -77,7 +77,6 @@ var possibleWords // dirty cheat
       },[]);
 
       updateLetters();
-
       const msg = await findMatches();
       
       if((msg.words.length < minPossibleAllowed) || msg.maxScore < minPossibleScore){
