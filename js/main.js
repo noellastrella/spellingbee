@@ -1,3 +1,5 @@
+//Didn't want to pay NYT subscription and wanted to make this game on my own
+
 (()=>{
   var words;
   var letters = [];
@@ -67,6 +69,7 @@
       const msg = await findMatches();
       if(msg.length < minPossibleAllowed) init(); //redo this cuz theres not enough possible words
       document.querySelector("#possible_matches").innerHTML = msg.length;
+      console.log(msg)
   }
 
   function updateLetters(){
