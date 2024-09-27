@@ -23,7 +23,7 @@
   });
 
   document.querySelector("#buttons_container").addEventListener("click", (e)=>{
-    let msg = "";
+    let msg = " ";
 
     if(e.target.id==="delete"){
       guessArray.pop();
@@ -84,10 +84,10 @@
 
   function addLetter(e){
     guessArray.push(e.target.dataset["letter"]);
-    updateState();
+    updateState(" ");
   }
 
-  function updateState(msg=""){
+  function updateState(msg=" "){
     document.querySelector("#word_list").innerHTML = guessesArray.reduce((acc,curr)=>acc+=`<li>${curr.guess} (${curr.score})</li>`,"")
     document.querySelector("#text").innerText = guessArray.join("");
     document.querySelector("#score").innerText = score;
@@ -122,16 +122,12 @@
   function checkWord(){
     let guessTemp = guessArray.join("").toLowerCase();
     if(!guessTemp.includes(letters[letters.length-1].toLowerCase())) return "MUST USE MIDDLE LETTER"
-    
     if(words.includes(guessTemp)){
         if(guessesArray.includes(guessTemp)){
           return "Word already used";
         }else{
           let scoreTemp = getScore(guessTemp);
-          guessesArray.push({
-            guess: guessTemp,
-            score: scoreTemp
-          });
+          guessesArray.push(guessTemp);
           score+=scoreTemp;
           guessArray = [];
           return "...";
