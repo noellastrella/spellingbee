@@ -28,12 +28,13 @@ html{
   #honeycomb_container{
     display: flex;
     justify-content: center;
-    width: 100%;
+    //width: 100%;
+    max-height: 800px;
     aspect-ratio: 16/9;
 
     & svg{
       width: 100%;
-
+      aspect-ratio: 16 / 9;
       .hex{
           &.white .comb{
             fill: #FFF;
