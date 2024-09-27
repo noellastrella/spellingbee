@@ -1,5 +1,5 @@
 //Didn't want to pay NYT subscription and wanted to make this game on my own
-var words // dirty cheat
+var possibleWords // dirty cheat
 (()=>{
   let vowels = "AEIOU".split("");
   let alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");    
@@ -7,7 +7,7 @@ var words // dirty cheat
   var letters, lettersOpp, guessArray, guessesArray, score;
   var minPossibleAllowed = 20;
   var minPossibleScore = 100;
-  //var words;
+  var words;
 
   var wordFile = './js/wordlist/wordsFiltered.json' +"?num="+Math.random();  //'/js/wordlist/words273k.json'
 
@@ -66,6 +66,7 @@ var words // dirty cheat
         letters.push( [...vowels.map(value => ({ value, sort: Math.random() })).sort((a, b) => a.sort - b.sort).map(({ value }) => value).splice(0,1) ] );
         letters.push( [...consonants.map(value => ({ value, sort: Math.random() })).sort((a, b) => a.sort - b.sort).map(({ value }) => value).splice(0,6) ] );
         letters = letters.flat();
+        document.querySelector("#customLetters").value = letters.join("").toUpperCase()
       }
 
       score = 0;
@@ -86,7 +87,7 @@ var words // dirty cheat
           init(); //redo this cuz theres not enough possible words
         }
       } 
-      
+      possibleWords = msg;
       document.querySelector("#possible_matches").innerHTML = msg.words.length;
       document.querySelector("#max_score").innerHTML = msg.maxScore;
   }

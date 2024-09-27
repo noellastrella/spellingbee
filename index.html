@@ -4,6 +4,9 @@
     </head>    
     <body>
         <main class="container">
+            <section id="score_container">
+                <div class="text-center">Score: <span id="score">0</span></div>
+            </section>
             <section id="honeycomb_container">
                 <svg version="1.1" id="hive" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                     XviewBox="0 0 1366 640" style="enable-background:new 0 0 1366 640;" xml:space="preserve" >
@@ -76,9 +79,6 @@
             <section id="buttons_container">
                 <button id="delete">Delete</button> 
                 <button id="submit">Submit</button> 
-            </section>
-            <section id="score_container">
-                <div id="score"  class="text-center">Score: <span id="score">0</span></div>
             </section>
             <aside>
                 <form id="custom_letters"><label for="customLetters">Custom Letters: </label><input type="text" maxlength="7" id="customLetters" pattern="[A-Za-z]{7}"><button type="submit">ok</button>
