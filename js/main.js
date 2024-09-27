@@ -1,15 +1,9 @@
 //Didn't want to pay NYT subscription and wanted to make this game on my own
-
 (()=>{
   let vowels = "AEIOU".split("");
   let alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");    
   let consonants = alphabet.reduce((acc,curr)=>vowels.includes(curr) ? acc: [...acc, curr],[]);
-  var words;
-  var letters = [];
-  var lettersOpp = [];
-  var guessArray = [];
-  var guessesArray = [];
-  var score = 0;
+  var words, letters, lettersOpp, guessArray, guessesArray, score;
   var minPossibleAllowed = 20;
   var minPossibleScore = 100;
 
@@ -17,9 +11,13 @@
 
   document.querySelector("#custom_letters").addEventListener("submit", (e)=>{ 
     e.preventDefault();
+    init(document.querySelector("#customLetters").value.toUpperCase().split(""));
+  });
     
-    letters = document.querySelector("#customLetters").value.toUpperCase().split(""); 
-    updateLetters();
+  document.querySelector("#reset").addEventListener("click", e=>{
+    e.preventDefault();
+      init();
+      updateState();
   });
 
   document.querySelector("#buttons_container").addEventListener("click", (e)=>{
@@ -38,7 +36,6 @@
     updateState(msg);
   });
 
-
   fetch(wordFile)
     .then(response => {
       if (!response.ok) {
@@ -55,11 +52,21 @@
     })
     .catch(error => console.error('Fetch error:', error) );
 
-  async function init(){
-      letters = [];
-      letters.push( [...vowels.map(value => ({ value, sort: Math.random() })).sort((a, b) => a.sort - b.sort).map(({ value }) => value).splice(0,1) ] );
-      letters.push( [...consonants.map(value => ({ value, sort: Math.random() })).sort((a, b) => a.sort - b.sort).map(({ value }) => value).splice(0,6) ] );
-      letters = letters.flat();
+  async function init(lettersTemp = []){
+      lettersOpp = [];
+      guessArray = [];
+      guessesArray = [];
+      console.log(lettersTemp)
+      if(lettersTemp.length > 1){
+        letters = lettersTemp;
+      }else{
+        letters = [];
+        letters.push( [...vowels.map(value => ({ value, sort: Math.random() })).sort((a, b) => a.sort - b.sort).map(({ value }) => value).splice(0,1) ] );
+        letters.push( [...consonants.map(value => ({ value, sort: Math.random() })).sort((a, b) => a.sort - b.sort).map(({ value }) => value).splice(0,6) ] );
+        letters = letters.flat();
+      }
+
+      score = 0;
 
       lettersOpp = alphabet.reduce((acc,curr)=>{
         acc = letters.includes(curr) ? acc : [...acc, curr];
@@ -69,7 +76,15 @@
       updateLetters();
 
       const msg = await findMatches();
-      if((msg.words.length < minPossibleAllowed) || msg.maxScore < minPossibleScore) init(); //redo this cuz theres not enough possible words
+      
+      if((msg.words.length < minPossibleAllowed) || msg.maxScore < minPossibleScore){
+        if(lettersTemp.length > 1){
+          alert(`Not enough words can be generated from ${lettersTemp.join(', ')}`)
+        }else{
+          init(); //redo this cuz theres not enough possible words
+        }
+      } 
+      
       document.querySelector("#possible_matches").innerHTML = msg.words.length;
       document.querySelector("#max_score").innerHTML = msg.maxScore;
   }
