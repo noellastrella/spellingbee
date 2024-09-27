@@ -15,6 +15,30 @@
 
   var wordFile = './js/wordlist/wordsFiltered.json' +"?num="+Math.random();  //'/js/wordlist/words273k.json'
 
+  document.querySelector("#custom_letters").addEventListener("submit", (e)=>{ 
+    e.preventDefault();
+    
+    letters = document.querySelector("#customLetters").value.toUpperCase().split(""); 
+    updateLetters();
+  });
+
+  document.querySelector("#buttons_container").addEventListener("click", (e)=>{
+    let msg = "";
+
+    if(e.target.id==="delete"){
+      guessArray.pop();
+    }else if(e.target.id==="submit"){
+        msg = "Enter a word"
+        if(guessArray.length > 0 && guessArray.length <4 ){
+          msg = "Word Too Short";
+        }else{
+          msg = checkWord();
+        }
+    }
+    updateState(msg);
+  });
+
+
   fetch(wordFile)
     .then(response => {
       if (!response.ok) {
@@ -41,30 +65,6 @@
         acc = letters.includes(curr) ? acc : [...acc, curr];
         return acc;
       },[]);
-      
-      console.log(letters)
-      document.querySelector("#custom_letters").addEventListener("submit", (e)=>{ 
-        e.preventDefault();
-        
-        letters = document.querySelector("#customLetters").value.toUpperCase().split(""); 
-        updateLetters();
-      });
-
-      document.querySelector("#buttons_container").addEventListener("click", (e)=>{
-        let msg = "";
-
-        if(e.target.id==="delete"){
-          guessArray.pop();
-        }else if(e.target.id==="submit"){
-            msg = "Enter a word"
-            if(guessArray.length > 0 && guessArray.length <4 ){
-              msg = "Word Too Short";
-            }else{
-              msg = checkWord();
-            }
-        }
-        updateState(msg);
-      });
 
       updateLetters();
 
@@ -72,7 +72,6 @@
       if((msg.words.length < minPossibleAllowed) || msg.maxScore < minPossibleScore) init(); //redo this cuz theres not enough possible words
       document.querySelector("#possible_matches").innerHTML = msg.words.length;
       document.querySelector("#max_score").innerHTML = msg.maxScore;
-      console.log(msg)
   }
 
   function updateLetters(){
@@ -122,8 +121,7 @@
 
   function checkWord(){
     let guessTemp = guessArray.join("").toLowerCase();
-
-    if(!guessTemp.includes(letters[letters.length-1].toLowerCase())) return "MUST USE MIDDLE WORD"
+    if(!guessTemp.includes(letters[letters.length-1].toLowerCase())) return "MUST USE MIDDLE LETTER"
     
     if(words.includes(guessTemp)){
         if(guessesArray.includes(guessTemp)){
