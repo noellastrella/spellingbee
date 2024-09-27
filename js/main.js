@@ -69,8 +69,9 @@
       updateLetters();
 
       const msg = await findMatches();
-      if((msg.words.length < minPossibleAllowed) && msg.maxScore < minPossibleScore) init(); //redo this cuz theres not enough possible words
+      if((msg.words.length < minPossibleAllowed) || msg.maxScore < minPossibleScore) init(); //redo this cuz theres not enough possible words
       document.querySelector("#possible_matches").innerHTML = msg.words.length;
+      document.querySelector("#max_score").innerHTML = msg.maxScore;
       console.log(msg)
   }
 
