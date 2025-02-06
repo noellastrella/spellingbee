@@ -41,13 +41,14 @@ html{
     justify-content: center;
 
     @media only screen and (min-width:300px){ 
-      max-height: 1200px;
-      aspect-ratio: 9/16;
+      max-height: 1000px;
+      aspect-ratio: 4/5;
     }
 
     @media only screen and (min-width:1025px){ 
-    //width: 100%;
+    width: 100%;
     max-height: 800px;
+
     aspect-ratio: 16/9;
     }
 
@@ -98,7 +99,7 @@ html{
     
   
       & button{
-        padding: .5em;
+        padding: .25em;
         width: 14em;
         margin: 1em;
         border-radius: .2em;
@@ -106,7 +107,7 @@ html{
 
         
         @media only screen and (min-width:300px){ 
-          font-size: 4em;
+          font-size: 1.5em;
         }
     
         @media only screen and (min-width:1025px){ 
@@ -127,27 +128,29 @@ html{
 
 
   aside{
-
-
-    @media only screen and (min-width:300px){ 
+    @media screen and (min-width:300px){ 
 
       width: 100%;
       overflow-y: scroll;
-      border: 1px solid #000;
+      border: 0px solid #000;
       position: fixed;
       right: 0px;
       bottom: 10px;
-      padding: 1em;
-      font-size: 2.5em;
+      
+      font-size: 1.5em;
+      text-align: center;
+
       form{
-        padding: 2em;
+        display: none;
       }
       input, button{
-        font-size: 2.5rem;
+        font-size: 1.5rem;
+        padding: .5em;
       }
+      
     }
 
-    @media only screen and (min-width:1025px){ 
+    @media screen and (min-width:1025px){ 
       
       width: 300px;
       max-width: 30%;
@@ -161,6 +164,7 @@ html{
       font-size: 1em;
       form{
         padding: 1em;
+        display: block;
       }
       input, button{
         font-size: 1rem;

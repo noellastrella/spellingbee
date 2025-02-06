@@ -1,8 +1,23 @@
 <html>
     <head>
-        <link rel="stylesheet" href="./css/main.css?x=5">
+      <!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-5RQ5ZP');</script>
+  <!-- End Google Tag Manager -->
+        <link rel="stylesheet" href="./css/main.css?x=9">
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
     </head>    
     <body>
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5RQ5ZP"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+
         <main class="container">
             <section id="score_container">
                 <div class="text-center">Score: <span id="score">0</span></div>
@@ -74,13 +89,15 @@
                 <button id="submit">Submit</button> 
             </section>
             <aside>
-                <form id="custom_letters"><label for="customLetters">Custom Letters: </label><input type="text" maxlength="7" id="customLetters" pattern="[A-Za-z]{7}"><button type="submit">ok</button>
-                <header>Words Guessed:</header>
-                <ol id="word_list">
+                <form id="custom_letters"><label for="customLetters">
+                    Custom Letters: </label><input type="text" maxlength="7" id="customLetters" pattern="[A-Za-z]{7}"><button type="submit">ok</button>
+                    <header>Words Guessed:</header>
+                    <ol id="word_list">
 
-                </ol>
-                </div>Possible matches: <span id="possible_matches"></span></div>
-                </div>Max score: <span id="max_score"></span></div>
+                    </ol>
+                    </div>Possible matches: <span id="possible_matches"></span></div>
+                    </div>Max score: <span id="max_score"></span></div>
+                </form>
                 </div><button id="reset">Reset Game</button></div>
             </aside>
         </main>

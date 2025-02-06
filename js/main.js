@@ -62,10 +62,17 @@ var possibleWords // dirty cheat
       if(lettersTemp.length > 1){
         letters = lettersTemp;
       }else{
+        
         letters = [];
         letters.push( [...vowels.map(value => ({ value, sort: Math.random() })).sort((a, b) => a.sort - b.sort).map(({ value }) => value).splice(0,1) ] );
-        letters.push( [...consonants.map(value => ({ value, sort: Math.random() })).sort((a, b) => a.sort - b.sort).map(({ value }) => value).splice(0,6) ] );
+        letters.push( [...alphabet.map(value => ({ value, sort: Math.random() })).sort((a, b) => a.sort - b.sort).map(({ value }) => value).splice(0,11) ] );
+        
         letters = letters.flat();
+        letters = [...new Set(letters)];
+
+        letters = letters.splice(0,7)
+        
+        
         document.querySelector("#customLetters").value = letters.join("").toUpperCase()
       }
 
