@@ -1,5 +1,6 @@
 //Didn't want to pay NYT subscription and wanted to make this game on my own
-var possibleWords // dirty cheat
+var possibleWords; // dirty cheat
+
 (()=>{
   let vowels = "AEIOU".split("");
   let alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");    
@@ -9,11 +10,41 @@ var possibleWords // dirty cheat
   var minPossibleScore = 100;
   var words;
 
-  var wordFile = './js/wordlist/wordsFiltered.json' +"?num="+Math.random();  //'/js/wordlist/words273k.json'
+  var wordFile = 'js/wordlist/wordsMore.min.json' +"?num="+Math.random();  //'/js/wordlist/words273k.json'
+
 
   document.querySelector("#custom_letters").addEventListener("submit", (e)=>{ 
     e.preventDefault();
     init(document.querySelector("#customLetters").value.toUpperCase().split(""));
+  });
+
+  window.addEventListener("keydown", e=>{
+    let key = e.key.toUpperCase();
+    if(letters.indexOf(key) >-1){
+      console.log(e, guessArray)      
+      
+
+      guessArray.push(key);
+      updateState(" ");
+    }
+
+    if(key=="DELETE" || key=="BACKSPACE"){
+      guessArray.pop();
+    }
+
+    if(key=="ENTER"){
+      if(guessArray.length > 0 && guessArray.length <4 ){
+        updateState("Word Too Short");
+      }else{
+        updateState(checkWord());
+      }
+      
+    }else{
+      updateState(" ");
+    }
+
+    console.log(key)
+
   });
     
   document.querySelector("#reset").addEventListener("click", e=>{
@@ -22,6 +53,16 @@ var possibleWords // dirty cheat
       updateState();
   });
 
+  document.querySelector("#tab").addEventListener("click", e=>{
+    e.preventDefault();
+    document.querySelector("aside").classList.toggle("hide");
+  });
+
+  document.querySelector("#close").addEventListener("click", e=>{
+    e.preventDefault();
+    document.querySelector("aside").classList.toggle("hide");
+  });
+  
   document.querySelector("#buttons_container").addEventListener("click", (e)=>{
     let msg = " ";
 

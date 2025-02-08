@@ -100,7 +100,7 @@ html{
   
       & button{
         padding: .25em;
-        width: 14em;
+        width: 8em;
         margin: 1em;
         border-radius: .2em;
         cursor: pointer;
@@ -112,7 +112,7 @@ html{
     
         @media only screen and (min-width:1025px){ 
         //width: 100%;
-          font-size: 3em;
+          font-size: 2em;
         }
 
         &#submit{
@@ -128,34 +128,108 @@ html{
 
 
   aside{
-    @media screen and (min-width:300px){ 
+    transition: all .4s ease;
+    background-color: white;
+    position: fixed;
+    height: 90vh;
+    overflow: visible;
 
+    #reset_container{
+      
+      padding: 1em;
       width: 100%;
+      bottom: 2em;
+
+      #reset{
+        position: relative;
+        margin-left: auto;
+        margin-right: auto;
+      }
+    }
+
+    #tab{
+      //display: none;
+      border-radius: 1em 1em 0 0;
+      border:1px solid #000;
+      user-select: none;
+      cursor: pointer;
+      height: 1em;
+      padding: .5em;
+      width: 5em;
+      rotate: -90deg;
+      position: absolute;
+      left: -4.1em;
+      top: 2em;
+      
+    }
+
+    #aside_head{
+      //height: 12vh;
+      padding: 1em;
+    }
+
+    #word_list_container{
+      height: 85vh;
       overflow-y: scroll;
+      max-height: 50vh;
+
+      #word_list{
+        
+      }
+
+    }
+  
+    &.hide{
+
+      @media screen and (min-width:300px){ 
+        
+        right: -100.5vw;
+        
+      
+      }
+  
+      @media screen and (min-width:1025px){ 
+        right: -25vw;
+      }
+    }
+
+    @media screen and (min-width:300px){ 
+      font-size: .8em;
       border: 0px solid #000;
-      position: fixed;
-      right: 0px;
-      bottom: 10px;
+      
+      right: 0em;
+      bottom: 3em;
+      width: 100vw;
       
       font-size: 1.5em;
       text-align: center;
 
-      form{
-        display: none;
+      #close{
+        padding: 1em;
+        border: 1px solid black;
+        margin: 1em;
       }
+
       input, button{
         font-size: 1.5rem;
         padding: .5em;
+      }
+
+      #aside_head{
+        label{
+          display: block;
+        }
+
       }
       
     }
 
     @media screen and (min-width:1025px){ 
       
-      width: 300px;
+      width: 22vw;
       max-width: 30%;
       border: 1px solid #000;
-      position: absolute;
+      
       right: 0px;
       top: 10px;
       margin: 1em;
@@ -172,5 +246,6 @@ html{
     }
 
   }
+
 
 

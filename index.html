@@ -88,20 +88,35 @@
                 <button id="delete">Delete</button> 
                 <button id="submit">Submit</button> 
             </section>
-            <aside>
-                <form id="custom_letters"><label for="customLetters">
-                    Custom Letters: </label><input type="text" maxlength="7" id="customLetters" pattern="[A-Za-z]{7}"><button type="submit">ok</button>
-                    <header>Words Guessed:</header>
+            <aside id="aside" class="hide">
+              <section id="tab">WORDS</section>
+                <form id="custom_letters"><div><label for="customLetters">
+                  
+                  <section id="aside_head">
+                    <section id="close">close</section>
+                    <label>Custom Letters: </label><input type="text" maxlength="7" id="customLetters" pattern="[A-Za-z]{7}"><button type="submit">ok</button></div>
+                  
+                    <div>Possible: <span id="possible_matches"></span></div>
+                    </div>Max score: <span id="max_score"></span></div>
+                    <div id="reset_container">
+                      <button id="reset">Reset Game</button>
+                    </div>                    
+                    <h3>Words Guessed:</h3>
+                  </section>
+
+                  <section id="word_list_container">
                     <ol id="word_list">
 
+                   
                     </ol>
-                    </div>Possible matches: <span id="possible_matches"></span></div>
-                    </div>Max score: <span id="max_score"></span></div>
+                  </section>
+                    
+                    
                 </form>
-                </div><button id="reset">Reset Game</button></div>
+            
             </aside>
         </main>
     </body>
 </html>
 
-<script src="js/main.min.js?x=12"></script>
+<script src="js/main.min.js?x=13"></script>
