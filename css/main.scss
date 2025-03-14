@@ -3,6 +3,10 @@ html{
     font-family: sans-serif;
   }
 
+  * {
+    touch-action: manipulation;
+  }
+
   #alert{
     color: #F00;
     text-align: center;
@@ -10,7 +14,12 @@ html{
   
 
   #score_container{
-    font-size: 2em;
+    font-size: 4em;
+
+    @media screen and (min-width:300px){ 
+      
+      font-size: 2.5em;
+    }
   }
 
   .container{
@@ -28,12 +37,12 @@ html{
 
   .text-center{
     text-align:center;
-    font-size: 2em
   }
   
   #buttons{
       display: flex;
       justify-content: center;
+      
   }
 
   #honeycomb_container{
@@ -41,7 +50,7 @@ html{
     justify-content: center;
 
     @media only screen and (min-width:300px){ 
-      max-height: 1000px;
+      max-height: 30em;
       aspect-ratio: 4/5;
     }
 
@@ -78,7 +87,7 @@ html{
             color: #000;
           }
 
-          &:active{
+          &:active, &.active{
             & .comb{
               fill: #000;
             }
@@ -97,15 +106,13 @@ html{
     display: flex;
     justify-content: center;
     
-  
       & button{
         padding: .25em;
         width: 8em;
-        margin: 1em;
-        border-radius: .2em;
+        margin: .5em;
+        border-radius: 1em;
         cursor: pointer;
 
-        
         @media only screen and (min-width:300px){ 
           font-size: 1.5em;
         }
@@ -136,7 +143,7 @@ html{
 
     #reset_container{
       
-      padding: 1em;
+      padding: 1em 0 0;
       width: 100%;
       bottom: 2em;
 
@@ -150,6 +157,7 @@ html{
     #tab{
       //display: none;
       border-radius: 1em 1em 0 0;
+      font-size: .6em;
       border:1px solid #000;
       user-select: none;
       cursor: pointer;
@@ -159,7 +167,12 @@ html{
       rotate: -90deg;
       position: absolute;
       left: -4.1em;
-      top: 2em;
+      top: 8em;
+
+      @media only screen and (min-width:1025px){ 
+        //width: 100%;
+          font-size: 1em;
+      }
       
     }
 
@@ -170,6 +183,13 @@ html{
 
     #word_list_container{
       height: 85vh;
+
+      @media screen and (min-width:300px){ 
+        height: 35vh;
+        max-width: 80%;
+        margin: auto;
+    }
+      }
       overflow-y: scroll;
       max-height: 50vh;
 
@@ -189,25 +209,36 @@ html{
       }
   
       @media screen and (min-width:1025px){ 
-        right: -25vw;
+        right: -25.75vw;
       }
     }
 
     @media screen and (min-width:300px){ 
-      font-size: .8em;
+      font-size: .6em;
       border: 0px solid #000;
       
       right: 0em;
       bottom: 3em;
       width: 100vw;
+      top: 0;
       
       font-size: 1.5em;
       text-align: center;
 
+      h4{
+        margin: .5em;
+      }
+
+      #customLetters{
+        width: 60%
+      }
+
       #close{
-        padding: 1em;
+        padding: .5em;
         border: 1px solid black;
-        margin: 1em;
+        margin: 1em auto 1em auto;
+        border-radius: 1em;
+        font-size: 1em;
       }
 
       input, button{
@@ -231,7 +262,7 @@ html{
       border: 1px solid #000;
       
       right: 0px;
-      top: 10px;
+      top: 1em;
       margin: 1em;
       padding: 1em;
 

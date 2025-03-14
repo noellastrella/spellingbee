@@ -7,7 +7,14 @@
   'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
   })(window,document,'script','dataLayer','GTM-5RQ5ZP');</script>
   <!-- End Google Tag Manager -->
-        <link rel="stylesheet" href="./css/main.css?x=9">
+        
+
+        <script>
+          let css = document.createElement('link');
+          css.setAttribute('rel', 'stylesheet');
+          css.setAttribute('href', 'css/main.css?x='+ Math.random());
+          document.querySelector('head').appendChild(css);
+        </script>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
     </head>    
     <body>
@@ -20,7 +27,7 @@
 
         <main class="container">
             <section id="score_container">
-                <div class="text-center">Score: <span id="score">0</span></div>
+                <div class="text-center">Score: <span id="score">0</span> | Words: <span id="word-count">0</span></div>
             </section>
             <section id="honeycomb_container">
                 <svg id="hive" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 450 469">
@@ -101,7 +108,7 @@
                     <div id="reset_container">
                       <button id="reset">Reset Game</button>
                     </div>                    
-                    <h3>Words Guessed:</h3>
+                    <h4>Words Guessed:</h4>
                   </section>
 
                   <section id="word_list_container">
@@ -118,5 +125,10 @@
         </main>
     </body>
 </html>
+<script>
+  let node = document.createElement('script');
+  node.setAttribute('src', 'js/main.min.js?x='+ Math.random());
+  document.querySelector('head').appendChild(node);
+</script>
 
-<script src="js/main.min.js?x=13"></script>
+<!--<script src="js/main.min.js?x=15"></script>-->

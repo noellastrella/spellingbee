@@ -12,7 +12,6 @@ var possibleWords; // dirty cheat
 
   var wordFile = 'js/wordlist/wordsMore.min.json' +"?num="+Math.random();  //'/js/wordlist/words273k.json'
 
-
   document.querySelector("#custom_letters").addEventListener("submit", (e)=>{ 
     e.preventDefault();
     init(document.querySelector("#customLetters").value.toUpperCase().split(""));
@@ -21,9 +20,6 @@ var possibleWords; // dirty cheat
   window.addEventListener("keydown", e=>{
     let key = e.key.toUpperCase();
     if(letters.indexOf(key) >-1){
-      console.log(e, guessArray)      
-      
-
       guessArray.push(key);
       updateState(" ");
     }
@@ -42,8 +38,6 @@ var possibleWords; // dirty cheat
     }else{
       updateState(" ");
     }
-
-    console.log(key)
 
   });
     
@@ -99,7 +93,6 @@ var possibleWords; // dirty cheat
       lettersOpp = [];
       guessArray = [];
       guessesArray = [];
-      console.log(lettersTemp)
       if(lettersTemp.length > 1){
         letters = lettersTemp;
       }else{
@@ -110,9 +103,7 @@ var possibleWords; // dirty cheat
         
         letters = letters.flat();
         letters = [...new Set(letters)];
-
         letters = letters.splice(0,7)
-        
         
         document.querySelector("#customLetters").value = letters.join("").toUpperCase()
       }
@@ -143,8 +134,19 @@ var possibleWords; // dirty cheat
   function updateLetters(){
     document.querySelectorAll(".hex").forEach((e,i)=>{
       e.addEventListener("click", addLetter);
+      e.addEventListener("touchstart", toggleHexActive);
+      e.addEventListener("touchsend", toggleHexActive);
+      
       e.querySelector("polygon").setAttribute("data-letter", letters[i]);
       e.querySelector("text").innerHTML = letters[i];
+
+      function toggleHexActive(e){
+        if(e.type == "touchstart"){
+          e.classList.add('active');
+        }else{
+          e.classList.remove('active');
+        }
+      }
     });
   }
 
@@ -154,10 +156,15 @@ var possibleWords; // dirty cheat
   }
 
   function updateState(msg=" "){
+    let obj = document.getElementById("word_list_container")
     document.querySelector("#word_list").innerHTML = guessesArray.reduce((acc,curr)=>acc+=`<li>${curr} (${getScore(curr)})</li>`,"")
+    obj.scrollTop = obj.scrollHeight;
     document.querySelector("#text").innerText = guessArray.join("");
     document.querySelector("#score").innerText = score;
+    document.querySelector("#word-count").innerText = guessesArray.length;
     document.querySelector("#alert").innerHTML = msg;
+    console.log(guessesArray)
+    
   }
 
   function findMatches(){
